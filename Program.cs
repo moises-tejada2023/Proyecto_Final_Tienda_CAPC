@@ -85,14 +85,13 @@ cantidad[13] = 230m;
 
 //Creación de la pantalla de Bienvenida
 Console.Clear();
-Console.WriteLine("\n                      *****      BIENVENIDO A LA TIENDA       *****");
-Console.WriteLine("                      *****          SUPER PRECIOS            *****\n");
-
-Console.WriteLine("                          ... Pulse una tecla para continuar ...");
+Console.WriteLine("\n                         *****      BIENVENIDO A LA TIENDA       *****");
+Console.WriteLine("                         *****          SUPER PRECIOS            *****\n");
+Console.WriteLine("                             ... Pulse una tecla para continuar ...");
 Console.ReadKey();
 
 //Menú de compras
-Console.WriteLine("\n            **********            MENÚ DE COMPPRAS            **********\n");
+Console.WriteLine("\n               **********            MENÚ DE COMPPRAS            **********\n");
 Console.Write("      PRODUCTO      ");
 Console.Write("                          UNIDAD VENTA      ");
 Console.Write("   PRECIO      ");
