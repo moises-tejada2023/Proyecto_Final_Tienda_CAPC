@@ -4,7 +4,7 @@ string[] productosParaMenu = new string[14];
 decimal[] precio = new decimal[14];
 decimal[] cantidad = new decimal[14];
 string[] tipoCanPro = new string[14];
-int productoCompra;
+int opCompra;
 bool repetir = true;
 
 //Asignación de valores
@@ -106,11 +106,11 @@ for (int i = 0; i < 14; i++) {
 Console.WriteLine("");
 
 Console.Write("¿Qué producto desea comprar? (ingrese el número): ");
-productoCompra = Convert.ToInt32(Console.ReadLine());
+opCompra = Convert.ToInt32(Console.ReadLine());
 
 do{
-    if(productoCompra >= 1 && productoCompra <=14){
-        switch(productoCompra){
+    if(opCompra >= 1 && opCompra <=14){
+        switch(opCompra){
             case 1:
                 Console.WriteLine("\nSeleccionó " + productos[0]);
                 repetir = false;
@@ -170,12 +170,12 @@ do{
             default:
                 Console.WriteLine("\nOpción incorrecta.\n");
                 Console.Write("Ingrese nuevamente una opción válida: ");
-                productoCompra = Convert.ToInt32(Console.ReadLine());
+                opCompra = Convert.ToInt32(Console.ReadLine());
                 break;
         }   
     }else{
         Console.WriteLine("\nOpción incorrecta.\n");
         Console.Write("Ingrese nuevamente una opción válida: ");
-        productoCompra = Convert.ToInt32(Console.ReadLine());
+        opCompra = Convert.ToInt32(Console.ReadLine());
     }
 }while(repetir == true);
