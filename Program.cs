@@ -4,6 +4,8 @@ string[] productosParaMenu = new string[14];
 decimal[] precio = new decimal[14];
 decimal[] cantidad = new decimal[14];
 string[] tipoCanPro = new string[14];
+int productoCompra;
+bool repetir = true;
 
 //Asignación de valores
 
@@ -46,7 +48,7 @@ productosParaMenu[5] = " Galletas Oreo.                   ";
 productosParaMenu[6] = " Leche Salud.                     ";
 productosParaMenu[7] = " Detergente Xedex.                ";
 productosParaMenu[8] = " Limpia pisos Fabuloso.           ";
-productosParaMenu[9] = " Pasta de Dientes Colgate.        ";
+productosParaMenu[9] = "Pasta de Dientes Colgate.        ";
 productosParaMenu[10] = "Rasuradoras Lady Speed Stick.    ";
 productosParaMenu[11] = "Almohada para sala.              ";
 productosParaMenu[12] = "Muñeca Barbie Mattel.            ";
@@ -92,13 +94,88 @@ Console.ReadKey();
 
 //Menú de compras
 Console.WriteLine("\n               **********            MENÚ DE COMPPRAS            **********\n");
-Console.Write("      PRODUCTO      ");
+Console.Write("#     PRODUCTO      ");
 Console.Write("                          UNIDAD VENTA      ");
 Console.Write("   PRECIO      ");
 Console.WriteLine("    CANTIDAD   ");
 
 for (int i = 0; i < 14; i++) {
-    Console.WriteLine(i + "    " + productosParaMenu[i] + "       " + tipoCanPro[i] + "          $" + precio[i] + "           " + cantidad[i]);
+    Console.WriteLine((i + 1) + "    " + productosParaMenu[i] + "       " + tipoCanPro[i] + "          $" + precio[i] + "           " + cantidad[i]);
 }
 
 Console.WriteLine("");
+
+Console.Write("¿Qué producto desea comprar? (ingrese el número): ");
+productoCompra = Convert.ToInt32(Console.ReadLine());
+
+do{
+    if(productoCompra >= 1 && productoCompra <=14){
+        switch(productoCompra){
+            case 1:
+                Console.WriteLine("\nSeleccionó " + productos[0]);
+                repetir = false;
+                break;
+            case 2: 
+                Console.WriteLine("\nSeleccionó " + productos[1]);
+                repetir = false;
+                break;
+            case 3: 
+                Console.WriteLine("\nSeleccionó " + productos[2]);
+                repetir = false;
+                break;
+            case 4: 
+                Console.WriteLine("\nSeleccionó " + productos[3]);
+                repetir = false;
+                break;
+            case 5: 
+                Console.WriteLine("\nSeleccionó " + productos[4]);
+                repetir = false;
+                break;
+            case 6: 
+                Console.WriteLine("\nSeleccionó " + productos[5]);
+                repetir = false;
+                break;
+            case 7: 
+                Console.WriteLine("\nSeleccionó " + productos[6]);
+                repetir = false;
+                break;
+            case 8: 
+                Console.WriteLine("\nSeleccionó " + productos[7]);
+                repetir = false;
+                break;
+            case 9: 
+                Console.WriteLine("\nSeleccionó " + productos[8]);
+                repetir = false;
+                break;
+            case 10: 
+                Console.WriteLine("\nSeleccionó " + productos[9]);
+                repetir = false;
+                break;
+            case 11: 
+                Console.WriteLine("\nSeleccionó " + productos[10]);
+                repetir = false;
+                break;
+            case 12: 
+                Console.WriteLine("\nSeleccionó " + productos[11]);
+                repetir = false;
+                break;
+            case 13: 
+                Console.WriteLine("\nSeleccionó " + productos[12]);
+                repetir = false;
+                break;
+            case 14: 
+                Console.WriteLine("\nSeleccionó " + productos[13]);
+                repetir = false;
+                break;
+            default:
+                Console.WriteLine("\nOpción incorrecta.\n");
+                Console.Write("Ingrese nuevamente una opción válida: ");
+                productoCompra = Convert.ToInt32(Console.ReadLine());
+                break;
+        }   
+    }else{
+        Console.WriteLine("\nOpción incorrecta.\n");
+        Console.Write("Ingrese nuevamente una opción válida: ");
+        productoCompra = Convert.ToInt32(Console.ReadLine());
+    }
+}while(repetir == true);
