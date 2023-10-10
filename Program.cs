@@ -37,16 +37,16 @@ productos[11] = "Almohada para sala.";
 productos[12] = "Muñeca Barbie Mattel.";
 productos[13] = "Lapiceros Bic.";
 
-productosParaMenu[0] = "Jamón de Pavo.                   ";
-productosParaMenu[1] = "Carne Pollo.                     ";
-productosParaMenu[2] = "Carne Res.                       ";
-productosParaMenu[3] = "Carne Cerdo.                     ";
-productosParaMenu[4] = "Cereal Integral.                 ";
-productosParaMenu[5] = "Galletas Oreo.                   ";
-productosParaMenu[6] = "Leche Salud.                     ";
-productosParaMenu[7] = "Detergente Xedex.                ";
-productosParaMenu[8] = "Limpia pisos Fabuloso.           ";
-productosParaMenu[9] = "Pasta de Dientes Colgate.        ";
+productosParaMenu[0] = " Jamón de Pavo.                   ";
+productosParaMenu[1] = " Carne Pollo.                     ";
+productosParaMenu[2] = " Carne Res.                       ";
+productosParaMenu[3] = " Carne Cerdo.                     ";
+productosParaMenu[4] = " Cereal Integral.                 ";
+productosParaMenu[5] = " Galletas Oreo.                   ";
+productosParaMenu[6] = " Leche Salud.                     ";
+productosParaMenu[7] = " Detergente Xedex.                ";
+productosParaMenu[8] = " Limpia pisos Fabuloso.           ";
+productosParaMenu[9] = " Pasta de Dientes Colgate.        ";
 productosParaMenu[10] = "Rasuradoras Lady Speed Stick.    ";
 productosParaMenu[11] = "Almohada para sala.              ";
 productosParaMenu[12] = "Muñeca Barbie Mattel.            ";
@@ -93,13 +93,13 @@ Console.ReadKey();
 
 //Menú de compras
 Console.WriteLine("\n            **********            MENÚ DE COMPPRAS            **********\n");
-Console.Write("    UNIDAD VENTA      ");
-Console.Write("PRODUCTO      ");
-Console.Write("                   PRECIO      ");
+Console.Write("      PRODUCTO      ");
+Console.Write("                          UNIDAD VENTA      ");
+Console.Write("   PRECIO      ");
 Console.WriteLine("    CANTIDAD   ");
 
 for (int i = 0; i < 14; i++) {
-    Console.WriteLine("    " + tipoCanPro[i] + "       " + productosParaMenu[i] + "$" + precio[i] + "           " + cantidad[i]);
+    Console.WriteLine(i + "    " + productosParaMenu[i] + "       " + tipoCanPro[i] + "          $" + precio[i] + "           " + cantidad[i]);
 }
 
 Console.WriteLine("");
