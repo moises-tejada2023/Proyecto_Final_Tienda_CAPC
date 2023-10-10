@@ -1,0 +1,14 @@
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Debug\net7.0\ProyectoFinal(Tienda).exe
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Debug\net7.0\ProyectoFinal(Tienda).deps.json
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Debug\net7.0\ProyectoFinal(Tienda).runtimeconfig.json
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Debug\net7.0\ProyectoFinal(Tienda).dll
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Debug\net7.0\ProyectoFinal(Tienda).pdb
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).AssemblyInfoInputs.cache
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).AssemblyInfo.cs
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).csproj.CoreCompileInputs.cache
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).dll
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\refint\ProyectoFinal(Tienda).dll
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).pdb
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ProyectoFinal(Tienda).genruntimeconfig.cache
+C:\Users\moise\ProyectoFinal(Tienda)\obj\Debug\net7.0\ref\ProyectoFinal(Tienda).dll

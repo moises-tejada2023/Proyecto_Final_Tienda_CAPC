@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moise\\OneDrive\\Escritorio\\ProyectoFinal(Tienda)\\ProyectoFinal(Tienda).csproj",
+      "projectUniqueName": "C:\\Users\\moise\\ProyectoFinal(Tienda)\\ProyectoFinal(Tienda).csproj",
       "projectName": "ProyectoFinal(Tienda)",
-      "projectPath": "C:\\Users\\moise\\OneDrive\\Escritorio\\ProyectoFinal(Tienda)\\ProyectoFinal(Tienda).csproj",
+      "projectPath": "C:\\Users\\moise\\ProyectoFinal(Tienda)\\ProyectoFinal(Tienda).csproj",
       "packagesPath": "C:\\Users\\moise\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moise\\OneDrive\\Escritorio\\ProyectoFinal(Tienda)\\obj\\",
+      "outputPath": "C:\\Users\\moise\\ProyectoFinal(Tienda)\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\moise\\AppData\\Roaming\\NuGet\\NuGet.Config"
