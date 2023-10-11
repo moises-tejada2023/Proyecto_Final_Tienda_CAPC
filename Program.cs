@@ -3,26 +3,37 @@ string[] productos = new string[14];
 string[] productosParaMenu = new string[14];
 decimal[] precio = new decimal[14];
 decimal[] cantidad = new decimal[14];
-string[] tipoCanPro = new string[14];
+string[] tipoCanPro = new string[6];
+string[] tipoCanProMenu = new string[14];
 int opCompra;
-bool repetir = true;
+decimal compraCan = 0;
+bool repetir = true, validarCompra = true;
+char? repetirCompra;
+
 
 //Asignación de valores
 
-tipoCanPro[0] = "lb         ";
-tipoCanPro[1] = "lb         ";
-tipoCanPro[2] = "lb         ";
-tipoCanPro[3] = "lb         ";
-tipoCanPro[4] = "caja       ";
-tipoCanPro[5] = "paquete    ";
-tipoCanPro[6] = "galón      ";
-tipoCanPro[7] = "bolsa      ";
-tipoCanPro[8] = "bolsa      ";
-tipoCanPro[9] = "paquete    ";
-tipoCanPro[10] = "paquete    ";
-tipoCanPro[11] = "unidad     ";
-tipoCanPro[12] = "unidad     ";
-tipoCanPro[13] = "paquete    ";
+tipoCanPro[0] = "lb";
+tipoCanPro[1] = "caja";
+tipoCanPro[2] = "paquete";
+tipoCanPro[3] = "galón";
+tipoCanPro[4] = "bolsa";
+tipoCanPro[5] = "unidad";
+
+tipoCanProMenu[0] = "lb         ";
+tipoCanProMenu[1] = "lb         ";
+tipoCanProMenu[2] = "lb         ";
+tipoCanProMenu[3] = "lb         ";
+tipoCanProMenu[4] = "caja       ";
+tipoCanProMenu[5] = "paquete    ";
+tipoCanProMenu[6] = "galón      ";
+tipoCanProMenu[7] = "bolsa      ";
+tipoCanProMenu[8] = "bolsa      ";
+tipoCanProMenu[9] = "paquete    ";
+tipoCanProMenu[10] = "paquete    ";
+tipoCanProMenu[11] = "unidad     ";
+tipoCanProMenu[12] = "unidad     ";
+tipoCanProMenu[13] = "paquete    ";
 
 productos[0] = "Jamón de Pavo.";
 productos[1] = "Carne Pollo.";
@@ -100,7 +111,7 @@ Console.Write("   PRECIO      ");
 Console.WriteLine("    CANTIDAD   ");
 
 for (int i = 0; i < 14; i++) {
-    Console.WriteLine((i + 1) + "    " + productosParaMenu[i] + "       " + tipoCanPro[i] + "          $" + precio[i] + "           " + cantidad[i]);
+    Console.WriteLine((i + 1) + "    " + productosParaMenu[i] + "       " + tipoCanProMenu[i] + "          $" + precio[i] + "           " + cantidad[i]);
 }
 
 Console.WriteLine("");
@@ -112,8 +123,37 @@ do{
     if(opCompra >= 1 && opCompra <=14){
         switch(opCompra){
             case 1:
-                Console.WriteLine("\nSeleccionó " + productos[0]);
+                if(cantidad[0] == 0){
+                    Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                }else if(cantidad[0] > 0){
+                    Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                    Console.WriteLine("Este producto se vende por libra.\n");
+                    Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do{
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if(compraCan == 0 || compraCan < 0){
+                        Console.WriteLine("Opción inválida.");
+                    }else if(compraCan > 0){
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                }while(validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if(repetirCompra == 's'){
+                    Console.Clear();
+                    for (int i = 0; i < 14; i++) {
+                        Console.WriteLine((i + 1) + "    " + productosParaMenu[i] + "       " + tipoCanProMenu[i] + "          $" + precio[i] + "           " + cantidad[i]);
+                    }
+                    Console.Write("¿Qué producto desea comprar? (ingrese el número): ");
+                    opCompra = Convert.ToInt32(Console.ReadLine());
+                }else if(repetirCompra == 'n'){
+                    repetir = false;
+                }
                 repetir = false;
+                }
                 break;
             case 2: 
                 Console.WriteLine("\nSeleccionó " + productos[1]);
