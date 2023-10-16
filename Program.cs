@@ -123,8 +123,10 @@ do{
     if(opCompra >= 1 && opCompra <=14){
         switch(opCompra){
             case 1:
-                if(cantidad[0] == 0){
+                if(cantidad[0] <= 0){
                     Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                    repetir = false;
+                    break;
                 }else if(cantidad[0] > 0){
                     Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
                     Console.WriteLine("Este producto se vende por libra.\n");
@@ -152,7 +154,7 @@ do{
                 }else if(repetirCompra == 'n'){
                     repetir = false;
                 }
-                repetir = false;
+               // repetir = false;
                 }
                 break;
             case 2: 
