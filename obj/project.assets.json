@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\moise\\.nuget\\packages\\": {}
+    "C:\\Users\\willi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moise\\ProyectoFinal(Tienda)\\ProyectoFinal(Tienda).csproj",
+      "projectUniqueName": "C:\\Users\\willi\\Documents\\GitHub\\Proyecto_Final_Tienda_CAPC\\ProyectoFinal(Tienda).csproj",
       "projectName": "ProyectoFinal(Tienda)",
-      "projectPath": "C:\\Users\\moise\\ProyectoFinal(Tienda)\\ProyectoFinal(Tienda).csproj",
-      "packagesPath": "C:\\Users\\moise\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moise\\ProyectoFinal(Tienda)\\obj\\",
+      "projectPath": "C:\\Users\\willi\\Documents\\GitHub\\Proyecto_Final_Tienda_CAPC\\ProyectoFinal(Tienda).csproj",
+      "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\willi\\Documents\\GitHub\\Proyecto_Final_Tienda_CAPC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\moise\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"

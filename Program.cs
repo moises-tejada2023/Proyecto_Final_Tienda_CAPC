@@ -5,11 +5,11 @@ decimal[] precio = new decimal[14];
 decimal[] cantidad = new decimal[14];
 string[] tipoCanPro = new string[6];
 string[] tipoCanProMenu = new string[14];
-int opCompra;
-decimal compraCan = 0;
+string[] carrito = new string[10];
+decimal TotalCompra = 0, compraCan = 0;
+int opCompra, ComprasxCliente = 0;
 bool repetir = true, validarCompra = true;
 char? repetirCompra;
-
 
 //Asignación de valores
 
@@ -95,7 +95,6 @@ cantidad[11] = 150m;
 cantidad[12] = 43m;
 cantidad[13] = 230m;
 
-
 //Creación de la pantalla de Bienvenida
 Console.Clear();
 Console.WriteLine("\n                         *****      BIENVENIDO A LA TIENDA       *****");
@@ -103,30 +102,783 @@ Console.WriteLine("                         *****          SUPER PRECIOS        
 Console.WriteLine("                             ... Pulse una tecla para continuar ...");
 Console.ReadKey();
 
-//Menú de compras
-Console.WriteLine("\n               **********            MENÚ DE COMPPRAS            **********\n");
-Console.Write("#     PRODUCTO      ");
-Console.Write("                          UNIDAD VENTA      ");
-Console.Write("   PRECIO      ");
-Console.WriteLine("    CANTIDAD   ");
-
-for (int i = 0; i < 14; i++) {
-    Console.WriteLine((i + 1) + "    " + productosParaMenu[i] + "       " + tipoCanProMenu[i] + "          $" + precio[i] + "           " + cantidad[i]);
-}
-
-Console.WriteLine("");
-
-Console.Write("¿Qué producto desea comprar? (ingrese el número): ");
-opCompra = Convert.ToInt32(Console.ReadLine());
-
-do{
+do
+{
+    do
+    {
+        //Menú de compras
+        Console.WriteLine(
+            "\n               **********            MENÚ DE COMPPRAS            **********\n"
+        );
+        Console.Write("#     PRODUCTO      ");
+        Console.Write("                          UNIDAD VENTA      ");
+        Console.Write("   PRECIO      ");
+        Console.WriteLine("    CANTIDAD   ");
+        for (int i = 0; i < 14; i++)
+        {
+            Console.WriteLine(
+                (i + 1)
+                    + "    "
+                    + productosParaMenu[i]
+                    + "       "
+                    + tipoCanProMenu[i]
+                    + "          $"
+                    + precio[i]
+                    + "           "
+                    + cantidad[i]
+            );
+        }
+        Console.WriteLine("");
+        Console.Write("¿Qué producto desea comprar? (ingrese el número): ");
+        opCompra = Convert.ToInt32(Console.ReadLine());
+    } while (opCompra <= 0 && opCompra >= 14);
+    if (ComprasxCliente <= 10)
+    {
+        if (opCompra == 0)
+        {
+            Console.WriteLine("\nESPERAMOS QUE REGRESE PRONTO.");
+            Console.WriteLine("... Pulse una tecla para salir ...");
+            Console.ReadKey();
+            repetir = false;
+        }
+        else if (opCompra == 1)
+        {
+            if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 2)
+        {
+            if (cantidad[1] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[1] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[1] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[1] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[1] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[1] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 3)
+        {
+             if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 4)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 5)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 6)
+        {
+          if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 7)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 8)
+        {
+          if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 9)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 10)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 11)
+        {
+          if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 12)
+        {
+            if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 13)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+        else if (opCompra == 14)
+        {
+           if (cantidad[0] <= 0)
+            {
+                Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+            else if (cantidad[0] > 0)
+            {
+                Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
+                Console.WriteLine("Este producto se vende por libra.\n");
+                Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                do
+                {
+                    Console.Write("¿Cuántas libras desea comprar?");
+                    compraCan = Convert.ToDecimal(Console.ReadLine());
+                    if (compraCan == 0 || compraCan < 0 || compraCan > cantidad[0])
+                    {
+                        Console.WriteLine("Opción inválida.");
+                        Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                    else if (compraCan > 0)
+                    {
+                        cantidad[0] = cantidad[0] - compraCan;
+                        validarCompra = false;
+                        ComprasxCliente = ComprasxCliente + 1;
+                        TotalCompra = TotalCompra + (precio[0] * compraCan);
+                        carrito[ComprasxCliente] = "    " + productos[0] + "                           " + compraCan + " " + tipoCanPro[0] + "            $" + precio[0];
+                        Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
+                    }
+                } while (validarCompra == true);
+                Console.Write("¿Desea realizar otra compra? (s/n)");
+                repetirCompra = Convert.ToChar(Console.ReadLine());
+                if (repetirCompra == 's')
+                {
+                    Console.Clear();
+                }
+                else if (repetirCompra == 'n')
+                {
+                    repetir = false;
+                }
+            }
+        }
+    }
+    /*
     if(opCompra >= 1 && opCompra <=14){
-        switch(opCompra){
+        if (ComprasxCliente <=10)
+        {
+           switch(opCompra){
             case 1:
                 if(cantidad[0] <= 0){
                     Console.WriteLine("Lo sentimos, no podemos venderle este producto.");
-                    repetir = false;
-                    break;
+                    repetir=false;
                 }else if(cantidad[0] > 0){
                     Console.WriteLine("\nSeleccionó " + productos[0] + "\n");
                     Console.WriteLine("Este producto se vende por libra.\n");
@@ -139,6 +891,7 @@ do{
                     }else if(compraCan > 0){
                         cantidad[0] = cantidad[0] - compraCan;
                         validarCompra = false;
+                        ComprasxCliente=ComprasxCliente+1;
                         Console.WriteLine("Disponemos de " + cantidad[0] + " " + tipoCanPro[0] + ".\n");
                     }
                 }while(validarCompra == true);
@@ -146,6 +899,12 @@ do{
                 repetirCompra = Convert.ToChar(Console.ReadLine());
                 if(repetirCompra == 's'){
                     Console.Clear();
+                    //Menú de compras
+                    Console.WriteLine("\n               **********            MENÚ DE COMPPRAS            **********\n");
+                    Console.Write("#     PRODUCTO      ");
+                    Console.Write("                          UNIDAD VENTA      ");
+                    Console.Write("   PRECIO      ");
+                    Console.WriteLine("    CANTIDAD   ");
                     for (int i = 0; i < 14; i++) {
                         Console.WriteLine((i + 1) + "    " + productosParaMenu[i] + "       " + tipoCanProMenu[i] + "          $" + precio[i] + "           " + cantidad[i]);
                     }
@@ -157,55 +916,55 @@ do{
                // repetir = false;
                 }
                 break;
-            case 2: 
+            case 2:
                 Console.WriteLine("\nSeleccionó " + productos[1]);
                 repetir = false;
                 break;
-            case 3: 
+            case 3:
                 Console.WriteLine("\nSeleccionó " + productos[2]);
                 repetir = false;
                 break;
-            case 4: 
+            case 4:
                 Console.WriteLine("\nSeleccionó " + productos[3]);
                 repetir = false;
                 break;
-            case 5: 
+            case 5:
                 Console.WriteLine("\nSeleccionó " + productos[4]);
                 repetir = false;
                 break;
-            case 6: 
+            case 6:
                 Console.WriteLine("\nSeleccionó " + productos[5]);
                 repetir = false;
                 break;
-            case 7: 
+            case 7:
                 Console.WriteLine("\nSeleccionó " + productos[6]);
                 repetir = false;
                 break;
-            case 8: 
+            case 8:
                 Console.WriteLine("\nSeleccionó " + productos[7]);
                 repetir = false;
                 break;
-            case 9: 
+            case 9:
                 Console.WriteLine("\nSeleccionó " + productos[8]);
                 repetir = false;
                 break;
-            case 10: 
+            case 10:
                 Console.WriteLine("\nSeleccionó " + productos[9]);
                 repetir = false;
                 break;
-            case 11: 
+            case 11:
                 Console.WriteLine("\nSeleccionó " + productos[10]);
                 repetir = false;
                 break;
-            case 12: 
+            case 12:
                 Console.WriteLine("\nSeleccionó " + productos[11]);
                 repetir = false;
                 break;
-            case 13: 
+            case 13:
                 Console.WriteLine("\nSeleccionó " + productos[12]);
                 repetir = false;
                 break;
-            case 14: 
+            case 14:
                 Console.WriteLine("\nSeleccionó " + productos[13]);
                 repetir = false;
                 break;
@@ -214,10 +973,29 @@ do{
                 Console.Write("Ingrese nuevamente una opción válida: ");
                 opCompra = Convert.ToInt32(Console.ReadLine());
                 break;
-        }   
+            }
+        }else{
+            Console.WriteLine("Alcanzo la cantidad maxima de productos que puede llevar");
+        }
     }else{
         Console.WriteLine("\nOpción incorrecta.\n");
         Console.Write("Ingrese nuevamente una opción válida: ");
         opCompra = Convert.ToInt32(Console.ReadLine());
-    }
-}while(repetir == true);
+    }*/
+} while (repetir == true);
+
+//Recibo digital
+Console.Clear();
+Console.WriteLine("\n                         *****      RECIBO FINAL       *****");
+Console.WriteLine("                         *****        SUPER PRECIOS      *****");
+Console.WriteLine("                             ");
+Console.Write("     PRODUCTO      ");
+Console.Write("                          CANTIDAD      ");
+Console.Write("   PRECIO      ");
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine(carrito[i]);
+}
+Console.WriteLine("TOTAL                                                        $ " + TotalCompra);
+
+Console.WriteLine("productos del cliente " + ComprasxCliente);
