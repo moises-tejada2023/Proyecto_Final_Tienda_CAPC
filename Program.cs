@@ -5,7 +5,7 @@ decimal[] precio = new decimal[14];
 decimal[] cantidad = new decimal[14];
 string[] tipoCanPro = new string[6];
 string[] tipoCanProMenu = new string[14];
-string[] carrito = new string[10];
+string[] carrito = new string[11];
 decimal TotalCompra = 0, compraCan = 0;
 int opCompra, ComprasxCliente = 0;
 bool repetir = true, validarCompra = true, validarRepetirCompra = true;
@@ -97,8 +97,8 @@ cantidad[13] = 230m;
 
 //Creación de la pantalla de Bienvenida
 Console.Clear();
-Console.WriteLine("\n                         *****      BIENVENIDO A LA TIENDA       *****");
-Console.WriteLine("                         *****          SUPER PRECIOS            *****\n");
+Console.WriteLine("\n                         *****      BIENVENIDO A LA TIENDA      *****");
+Console.WriteLine("                         *****         SUPER $ PRECIOS          *****\n");
 Console.WriteLine("                             ... Pulse una tecla para continuar ...");
 Console.ReadKey();
 
@@ -121,7 +121,8 @@ do
         Console.Write("\n¿Qué producto desea comprar? (Ingrese un número y si desea salir ingrese '0'): ");
         opCompra = Convert.ToInt32(Console.ReadLine());
     } while (opCompra <= 0 && opCompra >= 14);
-    if (ComprasxCliente <= 10)
+
+    if (ComprasxCliente < 10)
     {
         if (opCompra == 0)
         {
@@ -134,27 +135,31 @@ do
         {
             if (cantidad[0] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
+                Console.ResetColor();
 
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
 
@@ -176,9 +181,15 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[0])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[0] + " " + tipoCanPro[0] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
+                    }
+                    else if (compraCan > 10)
+                    {
+                        Console.WriteLine("\nNo puede comprar más de 10 " + tipoCanPro[0] + "\n");
                     }
                     else if (compraCan > 0)
                     {
@@ -196,20 +207,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -218,27 +231,31 @@ do
         {
             if (cantidad[1] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
+                Console.ResetColor();
 
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -259,8 +276,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[1])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[1] + " " + tipoCanPro[0] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -269,7 +288,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[1] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[1] + compraCan + " " + tipoCanProMenu[1] + "            $" + precio[1];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[1] + compraCan + " " + tipoCanProMenu[1] + "            $" + precio[1] + "            $" + (precio[1] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[1] + " " + tipoCanPro[0] + "\n");
                     }
                 } while (validarCompra == true);
@@ -279,20 +298,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -301,27 +322,31 @@ do
         {
             if (cantidad[2] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
+                Console.ResetColor();
 
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -342,8 +367,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[2])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[2] + " " + tipoCanPro[0] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -352,7 +379,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[2] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[2] + compraCan + " " + tipoCanProMenu[2] + "            $" + precio[2];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[2] + compraCan + " " + tipoCanProMenu[2] + "            $" + precio[2] + "            $" + (precio[2] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[2] + " " + tipoCanPro[0] + "\n");
                     }
                 } while (validarCompra == true);
@@ -362,20 +389,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -384,27 +413,31 @@ do
         {
             if (cantidad[3] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
+                Console.ResetColor();
 
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -425,8 +458,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[3])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[3] + " " + tipoCanPro[0] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -435,7 +470,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[3] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[3] + compraCan + " " + tipoCanProMenu[3] + "            $" + precio[3];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[3] + compraCan + " " + tipoCanProMenu[3] + "            $" + precio[3] + "            $" + (precio[3] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[3] + " " + tipoCanPro[0] + "\n");
                     }
                 } while (validarCompra == true);
@@ -443,11 +478,11 @@ do
                 Console.Write("¿Desea realizar otra compra? (s/n): ");
                 repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                if (repetirCompra == 's')
+                if (repetirCompra == 's' || repetirCompra == 'S')
                 {
                     Console.Clear();
                 }
-                else if (repetirCompra == 'n')
+                else if (repetirCompra == 'n' || repetirCompra == 'N')
                 {
                     repetir = false;
                 }
@@ -457,27 +492,31 @@ do
         {
             if (cantidad[4] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -490,7 +529,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántas cajas desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -498,8 +537,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[4])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[4] + " " + tipoCanPro[1] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -508,7 +549,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[4] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[4] + compraCan + " " + tipoCanProMenu[4] + "            $" + precio[4];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[4] + compraCan + " " + tipoCanProMenu[4] + "            $" + precio[4] + "            $" + (precio[4] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[4] + " " + tipoCanPro[1] + "\n");
                     }
                 } while (validarCompra == true);
@@ -518,20 +559,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -540,27 +583,31 @@ do
         {
             if (cantidad[5] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -573,7 +620,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántos paquetes desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -581,8 +628,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[5])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[5] + " " + tipoCanPro[2] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -591,7 +640,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[5] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[5] + compraCan + " " + tipoCanProMenu[5] + "            $" + precio[5];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[5] + compraCan + " " + tipoCanProMenu[5] + "            $" + precio[5] + "            $" + (precio[5] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[5] + " " + tipoCanPro[2] + "\n");
                     }
                 } while (validarCompra == true);
@@ -601,20 +650,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -623,27 +674,31 @@ do
         {
             if (cantidad[6] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -656,7 +711,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántos galones desea comprar?");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -664,8 +719,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[6])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[6] + " " + tipoCanPro[3] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -674,7 +731,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[6] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[6] + compraCan + " " + tipoCanProMenu[6] + "            $" + precio[6];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[6] + compraCan + " " + tipoCanProMenu[6] + "            $" + precio[6] + "            $" + (precio[6] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[6] + " " + tipoCanPro[3] + "\n");
                     }
                 } while (validarCompra == true);
@@ -684,20 +741,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -706,27 +765,31 @@ do
         {
             if (cantidad[7] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -739,7 +802,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántas bolsas desea comprar?");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -747,8 +810,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[7])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[7] + " " + tipoCanPro[4] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -757,7 +822,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[7] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[7] + compraCan + " " + tipoCanProMenu[7] + "            $" + precio[7];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[7] + compraCan + " " + tipoCanProMenu[7] + "            $" + precio[7] + "            $" + (precio[7] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[7] + " " + tipoCanPro[4] + "\n");
                     }
                 } while (validarCompra == true);
@@ -767,20 +832,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -789,27 +856,31 @@ do
         {
             if (cantidad[8] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -822,7 +893,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántas bolsas desea comprar?");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -830,8 +901,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[8])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[8] + " " + tipoCanPro[4] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -840,7 +913,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[8] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[8] + compraCan + " " + tipoCanProMenu[8] + "            $" + precio[8];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[8] + compraCan + " " + tipoCanProMenu[8] + "            $" + precio[8] + "            $" + (precio[8] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[8] + " " + tipoCanPro[4] + "\n");
                     }
                 } while (validarCompra == true);
@@ -850,20 +923,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -872,27 +947,31 @@ do
         {
             if (cantidad[9] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -905,7 +984,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántos paquetes desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -913,8 +992,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[9])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[9] + " " + tipoCanPro[2] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -923,7 +1004,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[9] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[9] + compraCan + " " + tipoCanProMenu[9] + "            $" + precio[9];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[9] + compraCan + " " + tipoCanProMenu[9] + "            $" + precio[9] + "            $" + (precio[9] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[9] + " " + tipoCanPro[2] + "\n");
                     }
                 } while (validarCompra == true);
@@ -933,20 +1014,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -955,27 +1038,31 @@ do
         {
             if (cantidad[10] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -988,7 +1075,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántos paquetes desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -996,8 +1083,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[10])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[10] + " " + tipoCanPro[2] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -1006,7 +1095,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[10] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[10] + compraCan + " " + tipoCanProMenu[10] + "            $" + precio[10];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[10] + compraCan + " " + tipoCanProMenu[10] + "            $" + precio[10] + "            $" + (precio[10] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[10] + " " + tipoCanPro[2] + "\n");
                     }
                 } while (validarCompra == true);
@@ -1016,20 +1105,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -1038,27 +1129,31 @@ do
         {
             if (cantidad[11] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -1071,7 +1166,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántas unidades desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -1079,9 +1174,15 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[11])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[11] + " " + tipoCanPro[5] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
+                    }
+                    else if (compraCan > 10)
+                    {
+                        Console.WriteLine("\nNo puede comprar más de 10 " + tipoCanPro[0] + "\n");
                     }
                     else if (compraCan > 0)
                     {
@@ -1089,7 +1190,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[11] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[11] + compraCan + " " + tipoCanProMenu[11] + "            $" + precio[11];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[11] + compraCan + " " + tipoCanProMenu[11] + "            $" + precio[11] + "            $" + (precio[11] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[11] + " " + tipoCanPro[5] + "\n");
                     }
                 } while (validarCompra == true);
@@ -1099,20 +1200,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -1121,27 +1224,31 @@ do
         {
             if (cantidad[12] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -1154,7 +1261,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántas unidades desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -1162,8 +1269,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[12])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[12] + " " + tipoCanPro[5] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -1172,7 +1281,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[12] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[12] + compraCan + " " + tipoCanProMenu[12] + "            $" + precio[12];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[12] + compraCan + " " + tipoCanProMenu[12] + "            $" + precio[12] + "            $" + (precio[12] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[12] + " " + tipoCanPro[5] + "\n");
                     }
                 } while (validarCompra == true);
@@ -1182,20 +1291,22 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -1204,27 +1315,31 @@ do
         {
             if (cantidad[13] <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nLo sentimos, no podemos venderle este producto.\n");
-                
+                Console.ResetColor();
+
                 do
                 {
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
@@ -1237,7 +1352,7 @@ do
                 do
                 {
                     Console.WriteLine("¿Cuántos paquetes desea comprar? (Ingrese '0' para salir):");
-                    compraCan = (int) Convert.ToDecimal(Console.ReadLine());
+                    compraCan = (int)Convert.ToDecimal(Console.ReadLine());
 
                     if (compraCan == 0)
                     {
@@ -1245,8 +1360,10 @@ do
                     }
                     if (compraCan < 0 || compraCan > cantidad[13])
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOpción inválida.\n");
                         Console.WriteLine("La cantidad de producto disponible es: " + cantidad[13] + " " + tipoCanPro[2] + "\n");
+                        Console.ResetColor();
                         validarCompra = true;
                     }
                     else if (compraCan > 0)
@@ -1255,7 +1372,7 @@ do
                         validarCompra = false;
                         ComprasxCliente = ComprasxCliente + 1;
                         TotalCompra = TotalCompra + (precio[13] * compraCan);
-                        carrito[ComprasxCliente] = "    " + productosParaMenu[13] + compraCan + " " + tipoCanProMenu[13] + "            $" + precio[13];
+                        carrito[ComprasxCliente] = "    " + productosParaMenu[13] + compraCan + " " + tipoCanProMenu[13] + "            $" + precio[13] + "            $" + (precio[13] * compraCan);
                         Console.WriteLine("\nDisponemos de " + cantidad[13] + " " + tipoCanPro[2] + "\n");
                     }
                 } while (validarCompra == true);
@@ -1265,42 +1382,52 @@ do
                     Console.Write("¿Desea realizar otra compra? (s/n): ");
                     repetirCompra = Convert.ToChar(Console.ReadLine());
 
-                    if (repetirCompra == 's')
+                    if (repetirCompra == 's' || repetirCompra == 'S')
                     {
                         Console.Clear();
                         validarRepetirCompra = true;
                     }
-                    else if (repetirCompra == 'n')
+                    else if (repetirCompra == 'n' || repetirCompra == 'N')
                     {
                         repetir = false;
                         validarRepetirCompra = true;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nEntrada no válida. Debe ingresar solo 's' o 'n'.\n");
                         validarRepetirCompra = false;
+                        Console.ResetColor();
                     }
                 } while (validarRepetirCompra == false);
             }
         }
     }
+    else
+    {
+        Console.WriteLine("No puede llegar más de 10 compras.");
+        repetir = false;
+    }
 } while (repetir == true);
 
-//Recibo digital
+//Muestra el recibo digital
 Console.Clear();
-Console.WriteLine("\n                         *****      RECIBO FINAL       *****");
-Console.WriteLine("                         *****        SUPER PRECIOS      *****");
+Console.WriteLine("\n                                   *****      RECIBO FINAL       *****");
+Console.WriteLine("                                   *****     SUPER $ PRECIOS     *****");
 Console.WriteLine("                             ");
 Console.Write("     PRODUCTO      ");
 Console.Write("                   CANTIDAD");
-Console.Write("                 PRECIO");
-Console.Write("                 PRECIO TOTAL");
+Console.Write("                  PRECIO");
+Console.Write("           PRECIO TOTAL");
 
-for (int i = 0; i < 10; i++)
+for (int i = 0; i <= 10; i++)
 {
     Console.WriteLine(carrito[i]);
 }
 
-Console.WriteLine("TOTAL                                                        $ " + TotalCompra);
+Console.WriteLine("\nTOTAL                                                        $ " + TotalCompra);
 
-Console.WriteLine("productos del cliente " + ComprasxCliente);
+Console.WriteLine("Productos del cliente " + ComprasxCliente);
+
+Console.WriteLine("... Pulse una tecla para salir ...");
+Console.ReadKey();

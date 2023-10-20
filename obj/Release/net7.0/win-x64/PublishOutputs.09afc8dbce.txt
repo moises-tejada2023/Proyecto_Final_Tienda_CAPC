@@ -1,0 +1,2 @@
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Release\net7.0\win-x64\publish\ProyectoFinal(Tienda).pdb
+C:\Users\moise\ProyectoFinal(Tienda)\bin\Release\net7.0\win-x64\publish\ProyectoFinal(Tienda).exe
